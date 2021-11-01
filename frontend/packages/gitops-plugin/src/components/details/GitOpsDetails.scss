@@ -1,4 +1,4 @@
-.odc-gitops-details {
+.gop-gitops-details {
   padding: var(--pf-global--spacer--xl);
   height: 100%;
   flex-wrap: nowrap;
@@ -25,8 +25,8 @@
       margin: var(--pf-global--spacer--xs) 0px;
       outline: none;
     }
-    &__envname-and-status{
-      display:flex;
+    &__envname-and-status {
+      display: flex;
     }
     &__env {
       .pf-c-label__text {
@@ -37,7 +37,7 @@
       }
     }
     &__time {
-      margin: var(--pf-global--spacer--xs) 0px  var(--pf-global--spacer--xs) 0px;
+      margin: var(--pf-global--spacer--xs) 0px var(--pf-global--spacer--xs) 0px;
       display: flex;
       .co-icon-and-text__icon {
         display: none;
@@ -95,6 +95,6 @@
     }
   }
   &__operator-upgrade-alert {
-    margin-bottom: var(--pf-global--spacer--xl)
+    margin-bottom: var(--pf-global--spacer--xl);
   }
 }

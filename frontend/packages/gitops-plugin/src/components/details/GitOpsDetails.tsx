@@ -81,13 +81,13 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
     '/api/kubernetes/apis/packages.operators.coreos.com/v1/namespaces/openshift-marketplace/packagemanifests/argocd-operator/icon?resourceVersion=argocd-operator.alpha.argocd-operator.v0.0.14';
 
   return (
-    <div className="odc-gitops-details">
+    <div className="gop-gitops-details">
       {oldAPI && (
         <>
           <Alert
             isInline
             title={t('gitops-plugin~Compatibility Issue')}
-            className="odc-gitops-details__operator-upgrade-alert"
+            className="gop-gitops-details__operator-upgrade-alert"
           >
             {t('gitops-plugin~Compatibility Issue Message')}
           </Alert>
@@ -97,13 +97,13 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
         envs,
         (env) =>
           env && (
-            <Stack className="odc-gitops-details__env-section" key={env.environment}>
+            <Stack className="gop-gitops-details__env-section" key={env.environment}>
               <StackItem>
                 <Card>
-                  <CardTitle className="odc-gitops-details__env-section__header">
+                  <CardTitle className="gop-gitops-details__env-section__header">
                     <Stack>
                       <StackItem>
-                        <h2 className="co-section-heading co-truncate co-nowrap odc-gitops-details__env-section__app-name">
+                        <h2 className="co-section-heading co-truncate co-nowrap gop-gitops-details__env-section__app-name">
                           <Tooltip content={env.environment}>
                             <span>{env.environment}</span>
                           </Tooltip>
@@ -112,19 +112,19 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
                       <StackItem className="co-truncate co-nowrap">
                         {env.cluster ? (
                           <ExternalLink
-                            additionalClassName="odc-gitops-details__env-section__cluster-url"
+                            additionalClassName="gop-gitops-details__env-section__cluster-url"
                             href={env.cluster}
                           >
                             {env.cluster}
                           </ExternalLink>
                         ) : (
-                          <div className="odc-gitops-details__env-section__cluster-url-empty-state">
+                          <div className="gop-gitops-details__env-section__cluster-url-empty-state">
                             {t('gitops-plugin~Cluster URL not available')}
                           </div>
                         )}
                       </StackItem>
                       {env.status && (
-                        <StackItem className="odc-gitops-details__env-section__status-label">
+                        <StackItem className="gop-gitops-details__env-section__status-label">
                           <Tooltip content="Sync status">
                             <span>{renderStatusLabel(env.status)}</span>
                           </Tooltip>
@@ -133,23 +133,23 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
                     </Stack>
                   </CardTitle>
                   <CardBody>
-                    <Stack className="odc-gitops-details__revision">
+                    <Stack className="gop-gitops-details__revision">
                       {env.revision ? (
                         <>
                           {env.revision.message && (
-                            <StackItem className="odc-gitops-details__message">
+                            <StackItem className="gop-gitops-details__message">
                               {t('gitops-plugin~{{message}}', { message: env.revision.message })}
                             </StackItem>
                           )}
-                          <StackItem className="odc-gitops-details__author-sha">
+                          <StackItem className="gop-gitops-details__author-sha">
                             {env.revision.author && (
-                              <span className="odc-gitops-details__author">
+                              <span className="gop-gitops-details__author">
                                 {t('gitops-plugin~by {{author}}', { author: env.revision.author })}{' '}
                               </span>
                             )}
                             {env.revision.revision && (
                               <Label
-                                className="odc-gitops-details__sha"
+                                className="gop-gitops-details__sha"
                                 color="blue"
                                 icon={<GitAltIcon />}
                                 variant="outline"
@@ -163,20 +163,20 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
                         <span>{t('gitops-plugin~Commit details not available')}</span>
                       )}
                       {env.lastDeployed && (
-                        <StackItem className="co-truncate co-nowrap odc-gitops-details__env-section__time">
+                        <StackItem className="co-truncate co-nowrap gop-gitops-details__env-section__time">
                           {t('gitops-plugin~Last deployed')}&nbsp;
                           <Timestamp timestamp={env.lastDeployed} />
                         </StackItem>
                       )}
                       {argocdLink && (
                         <StackItem>
-                          <Split className="odc-gitops-details__env-section__deployment-history">
+                          <Split className="gop-gitops-details__env-section__deployment-history">
                             <Tooltip content="Argo CD">
-                              <SplitItem className="odc-gitops-details__env-section__deployment-history__argocd-link">
+                              <SplitItem className="gop-gitops-details__env-section__deployment-history__argocd-link">
                                 <ExternalLink
                                   href={`${argocdLink.spec.href}/applications/${env.environment}-${appName}`}
                                 >
-                                  <span className="odc-gitops-details__env-section__argo-external-link">
+                                  <span className="gop-gitops-details__env-section__argo-external-link">
                                     <img
                                       loading="lazy"
                                       src={ArgoCDIcon}
