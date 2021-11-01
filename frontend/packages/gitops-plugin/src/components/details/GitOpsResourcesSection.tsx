@@ -64,12 +64,12 @@ const GitOpsResourcesSection: React.FC<GitOpsResourcesSectionProps> = ({
 
   return (
     <>
-      <StackItem className="odc-gitops-resources">
+      <StackItem className="gop-gitops-resources">
         <Card>
-          <h3 className="odc-gitops-resources__title co-nowrap">{t('gitops-plugin~Resources')}</h3>
+          <h3 className="gop-gitops-resources__title co-nowrap">{t('gitops-plugin~Resources')}</h3>
           <CardBody>
             <Split hasGutter>
-              <span className="odc-gitops-resources__list">
+              <span className="gop-gitops-resources__list">
                 <SplitItem>
                   <Stack style={{ marginRight: 'var(--pf-global--spacer--sm)' }}>
                     <StackItem>{deployments ? deployments.length : 'N/A'}</StackItem>
