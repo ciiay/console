@@ -28,11 +28,18 @@ interface GitOpsResourcesSectionProps {
   clusterRoleBindings: GitOpsHealthResources[];
 }
 
+export enum HealthStatus {
+  DEGRADED = 'Degraded',
+  PROGRESSING = 'Progressing',
+  MISSING = 'Missing',
+  UNKNOWN = 'Unknown',
+}
+
 const getUnhealthyResources = () => (acc: string[], current: GitOpsHealthResources): string[] =>
-  current.health === 'Degraded' ||
-  current.health === 'Progressing' ||
-  current.health === 'Missing' ||
-  current.health === 'Unknown'
+  current.health === HealthStatus.DEGRADED ||
+  current.health === HealthStatus.PROGRESSING ||
+  current.health === HealthStatus.MISSING ||
+  current.health === HealthStatus.UNKNOWN
     ? [...acc, current.health]
     : acc;
 

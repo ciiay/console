@@ -14,17 +14,12 @@ import {
 import { GitAltIcon } from '@patternfly/react-icons';
 import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
-// import { routeDecoratorIcon } from '@console/dev-console/src/components/import/render-utils';
 import { ExternalLink, Timestamp } from '@console/internal/components/utils';
 import { useK8sWatchResource } from '@console/internal/components/utils/k8s-watch-hook';
 import { ConsoleLinkModel } from '@console/internal/models';
 import { K8sResourceKind, referenceForModel } from '@console/internal/module/k8s';
-import {
-  GreenCheckCircleIcon,
-  YellowExclamationTriangleIcon,
-  GrayUnknownIcon,
-} from '@console/shared';
 import { GitOpsEnvironment } from '../utils/gitops-types';
+import GitOpsRenderStatusLabel from './GitOpsRenderStatusLabel';
 import GitOpsResourcesSection from './GitOpsResourcesSection';
 import './GitOpsDetails.scss';
 
@@ -45,32 +40,6 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
     (link: K8sResourceKind) =>
       link.metadata?.name === 'argocd' && link.spec?.location === 'ApplicationMenu',
   );
-
-  // eslint-disable-next-line no-shadow
-  const renderStatusLabel = (status: string) => {
-    switch (status) {
-      case 'Synced':
-        return (
-          <Label icon={<GreenCheckCircleIcon />} isTruncated>
-            Synced
-          </Label>
-        );
-      case 'OutOfSync':
-        return (
-          <Label icon={<YellowExclamationTriangleIcon />} isTruncated>
-            OutOfSync
-          </Label>
-        );
-      case 'Unknown':
-        return (
-          <Label icon={<GrayUnknownIcon />} isTruncated>
-            Unknown
-          </Label>
-        );
-      default:
-        return '';
-    }
-  };
 
   let oldAPI = false;
   if (envs && envs.length > 0) {
@@ -126,7 +95,7 @@ const GitOpsDetails: React.FC<GitOpsDetailsProps> = ({ envs, appName }) => {
                       {env.status && (
                         <StackItem className="odc-gitops-details__env-section__status-label">
                           <Tooltip content="Sync status">
-                            <span>{renderStatusLabel(env.status)}</span>
+                            <GitOpsRenderStatusLabel status={env.status} />
                           </Tooltip>
                         </StackItem>
                       )}
